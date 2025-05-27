@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    // Module System
+    "module": "NodeNext",          // Use Node.js-style module resolution
+    "moduleResolution": "NodeNext", // Modern module resolution strategy
+    "esModuleInterop": true,       // Better interop with CommonJS modules
+    "allowJs": true,               // Allow JavaScript files
+    
+    // ECMAScript Target
+    "target": "ES2022",           // Modern JavaScript features
+    "lib": ["ES2022", "DOM"],     // Include standard libraries
+    
+    // Type Checking
+    "strict": true,               // Enable all strict type checking
+    "noImplicitAny": true,       // Error on implied 'any' type
+    "strictNullChecks": true,    // Better null/undefined handling
+    
+    // Path Resolution
+    "baseUrl": "./src",          // Base directory for imports
+    "paths": {
+      "@/*": ["*"],              // Path alias for src directory
+      "@lib/*": ["lib/*"],       // Additional path aliases
+      "@utils/*": ["utils/*"]
+    },
+    
+    // Output Configuration
+    "outDir": "./dist",          // Output directory
+    "sourceMap": true,           // Generate source maps
+    "declaration": true,         // Generate .d.ts files
+    
+    // Interop Features
+    "allowSyntheticDefaultImports": true, // Allow default imports from CJS
+    "isolatedModules": true,              // Safe for transpilers
+    
+    // Advanced Features
+    "experimentalDecorators": true,     // Enable decorators
+    "emitDecoratorMetadata": true      // Emit decorator metadata
+  },
+  "include": [
+    "src/**/*"                  // Files to include
+  ],
+  "exclude": [
+    "node_modules",            // Files to exclude
+    "dist"
+  ]
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Import Maps Example</title>
+    
+    <!--
+        Import Maps Configuration
+        
+        Import maps provide a way to control how the JavaScript runtime
+        resolves module specifiers. They must be defined before any module
+        scripts that use them.
+        
+        Key Benefits:
+        1. Simplified imports without complex paths
+        2. Environment-specific module resolution
+        3. Version management without build tools
+        4. Scoped package overrides
+    -->
+    <script type="importmap">
+    {
+        "imports": {
+            // 1. Bare Module Specifiers
+            // Convert npm-style bare specifiers to actual URLs
+            "lodash": "./libs/lodash-es.js",          // Local module
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js",  // CDN module
+            
+            // 2. Path Remapping
+            // Create aliases for commonly used paths
+            "#utils/": "./src/utils/",              // Import from #utils/date.js
+            "#components/": "./src/components/",    // Import from #components/button.js
+            
+            // 3. Version Management
+            // Control which version of a module is used
+            "lib": "./libs/lib-v2.js",              // Main version
+            "lib/testing": "./libs/lib-v2-testing.js",  // Testing variant
+            
+            // 4. Scoped Packages
+            // Support npm-style scoped packages
+            "@company/ui": "./libs/ui.js",          // UI components
+            "@company/utils": "./libs/utils.js",    // Utility functions
+            
+            // 5. URL Shortcuts
+            // Define prefixes for different sources
+            "cdn:": "https://cdn.example.com/",     // CDN resources
+            "local:": "/local/path/"               // Local resources
+        },
+
+        // 6. Scoped Overrides
+        // Override module resolution in specific paths
+        "scopes": {
+            // Testing environment uses different module versions
+            "/test/": {
+                "lib": "./libs/lib-testing.js"      // Test-specific version
+            },
+            // Admin section uses specialized UI components
+            "/admin/": {
+                "@company/ui": "./libs/admin-ui.js"  // Admin-specific UI
+            }
+        }
+    }
+    </script>
+    
+    <!--
+        Module Usage
+        This script can now use the import map to resolve modules.
+        Example: import { format } from '#utils/date.js';
+    -->
+    <script type="module" src="main.js"></script>
+</head>
+<body>
+    <h1>Import Maps Example</h1>
+    
+    <h2>Features Demonstrated:</h2>
+    <ul>
+        <li>Bare module specifiers - Use npm-style imports</li>
+        <li>Path remapping - Simplify import paths</li>
+        <li>Version management - Control module versions</li>
+        <li>Scoped packages - Support namespaced modules</li>
+        <li>URL shortcuts - Define source prefixes</li>
+        <li>Scoped overrides - Context-specific modules</li>
+    </ul>
+    
+    <!-- Application root element -->
+    <div id="app"></div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CORS and Integrity Example</title>
+    
+    <!-- 1. Anonymous CORS -->
+    <script type="module" 
+            src="https://cdn.example.com/module1.js"
+            crossorigin="anonymous"
+            integrity="sha384-..."></script>
+    
+    <!-- 2. Credentialed CORS -->
+    <script type="module" 
+            src="https://api.example.com/module2.js"
+            crossorigin="use-credentials"></script>
+    
+    <!-- 3. Preload with integrity -->
+    <link rel="modulepreload" 
+          href="https://cdn.example.com/module3.js"
+          integrity="sha384-..."
+          crossorigin="anonymous">
+    
+    <!-- 4. Multiple hashes -->
+    <script type="module" 
+            src="https://cdn.example.com/module4.js"
+            integrity="sha384-... sha512-..."
+            crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>CORS and Integrity Demo</h1>
+    
+    <script type="module">
+        // Dynamic import with CORS
+        async function loadModule() {
+            try {
+                const module = await import('https://api.example.com/module.js');
+                module.default();
+            } catch (error) {
+                console.error('CORS error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

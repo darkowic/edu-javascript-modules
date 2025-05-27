@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UMD Module Example</title>
+    <!-- First, test it with AMD -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    <script>
+        // AMD usage
+        requirejs.config({
+            baseUrl: '.'
+        });
+
+        requirejs(['user'], function(UserModule) {
+            console.log('=== AMD Loading ===');
+            try {
+                UserModule.addUser("Alice");
+                UserModule.addUser("Bo");
+            } catch (error) {
+                console.log('Error:', error.message);
+            }
+        });
+    </script>
+
+    <!-- Then, test it with global scope -->
+    <script>
+        // Remove RequireJS to test global scope
+        setTimeout(function() {
+            requirejs = undefined;
+            define = undefined;
+            
+            // Load scripts in correct order for globals
+            var validatorScript = document.createElement('script');
+            validatorScript.src = 'validator.js';
+            validatorScript.onload = function() {
+                var userScript = document.createElement('script');
+                userScript.src = 'user.js';
+                userScript.onload = function() {
+                    console.log('=== Global Scope Loading ===');
+                    try {
+                        User.addUser("Alice");
+                        User.addUser("Bo");
+                    } catch (error) {
+                        console.log('Error:', error.message);
+                    }
+                };
+                document.head.appendChild(userScript);
+            };
+            document.head.appendChild(validatorScript);
+        }, 2000);
+    </script>
+</head>
+<body>
+    <h1>UMD Module Example</h1>
+    <p>This example demonstrates UMD modules working in:</p>
+    <ol>
+        <li>AMD environment (using RequireJS)</li>
+        <li>Global scope (after removing RequireJS)</li>
+        <li>CommonJS (run index.js with Node)</li>
+    </ol>
+    <p>Check the console for output.</p>
+</body>
+</html>

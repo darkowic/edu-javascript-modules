@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Module Workers Example</title>
+    <style>
+        .checkerboard {
+            width: 200px;
+            height: 200px;
+            --checkerboard-spacing: 20;
+            --checkerboard-color: #007bff;
+            background-image: paint(checkerboard);
+        }
+    </style>
+</head>
+<body>
+    <h1>Module Workers Example</h1>
+    
+    <button onclick="calculatePrimes()">Calculate Primes</button>
+    
+    <h2>Paint Worklet Example</h2>
+    <div class="checkerboard"></div>
+    
+    <script type="module" src="main.js"></script>
+    
+    <h2>Features Demonstrated:</h2>
+    <ul>
+        <li>ES Modules in Workers</li>
+        <li>Dedicated Workers</li>
+        <li>Shared Workers</li>
+        <li>Paint Worklets</li>
+        <li>Module Dependencies</li>
+        <li>Error Handling</li>
+    </ul>
+    
+    <p>Open the console to see results</p>
+    <p>Open multiple tabs to see shared worker in action</p>
+</body>
+</html>

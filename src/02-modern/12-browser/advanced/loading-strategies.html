@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Module Loading Strategies</title>
+    
+    <!-- 1. Preload critical modules -->
+    <link rel="modulepreload" href="./core/app.js">
+    <link rel="modulepreload" href="./core/router.js">
+    
+    <!-- 2. Defer non-critical modules -->
+    <script type="module" defer src="./features/analytics.js"></script>
+    
+    <!-- 3. Async load independent modules -->
+    <script type="module" async src="./features/feedback.js"></script>
+    
+    <!-- 4. Prefetch future modules -->
+    <link rel="prefetch" href="./routes/about.js">
+    
+    <!-- 5. Dynamic import with preload -->
+    <script type="module">
+        // Preload before needed
+        const link = document.createElement('link');
+        link.rel = 'modulepreload';
+        link.href = './features/comments.js';
+        document.head.appendChild(link);
+        
+        // Load when needed
+        document.getElementById('load-comments').onclick = async () => {
+            const module = await import('./features/comments.js');
+            module.default();
+        };
+    </script>
+    
+    <!-- 6. Conditional loading -->
+    <script type="module">
+        if (navigator.connection?.saveData) {
+            // Load light version
+            import('./light.js');
+        } else {
+            // Load full version
+            import('./full.js');
+        }
+    </script>
+    
+    <!-- 7. Progressive loading -->
+    <script type="module">
+        // Load core features immediately
+        import('./core.js');
+        
+        // Load enhanced features after idle
+        requestIdleCallback(async () => {
+            const enhanced = await import('./enhanced.js');
+            enhanced.default();
+        });
+    </script>
+</head>
+<body>
+    <h1>Module Loading Strategies Demo</h1>
+    
+    <button id="load-comments">Load Comments</button>
+    
+    <script>
+        // Monitor module loading
+        const observer = new PerformanceObserver(list => {
+            list.getEntries().forEach(entry => {
+                console.log('Module loaded:', entry.name, entry.duration);
+            });
+        });
+        
+        observer.observe({ entryTypes: ['resource'] });
+    </script>
+</body>
+</html>

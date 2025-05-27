@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Module Scripts Example</title>
+    
+    <!-- 1. Basic module script -->
+    <script type="module" src="./app.js"></script>
+    
+    <!-- 2. Inline module script -->
+    <script type="module">
+        import { initialize } from './app.js';
+        initialize();
+    </script>
+    
+    <!-- 3. Deferred loading -->
+    <script type="module" defer src="./deferred.js"></script>
+    
+    <!-- 4. Async loading -->
+    <script type="module" async src="./async.js"></script>
+    
+    <!-- 5. Module preload -->
+    <link rel="modulepreload" href="./critical.js">
+    
+    <!-- 6. Integrity check -->
+    <script type="module" 
+            src="https://cdn.example.com/lib.js"
+            integrity="sha384-..."
+            crossorigin="anonymous"></script>
+    
+    <!-- 7. CORS settings -->
+    <script type="module" 
+            src="https://api.example.com/module.js"
+            crossorigin="use-credentials"></script>
+    
+    <!-- 8. Nomodule fallback -->
+    <script nomodule src="./legacy-fallback.js"></script>
+</head>
+<body>
+    <h1>Module Scripts Demo</h1>
+    <div id="app"></div>
+    
+    <!-- 9. Dynamic module loading -->
+    <button onclick="loadFeature()">Load Feature</button>
+    
+    <script>
+        async function loadFeature() {
+            const module = await import('./feature.js');
+            module.default();
+        }
+    </script>
+</body>
+</html>

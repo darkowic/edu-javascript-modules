@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Module Attributes Example</title>
+    
+    <!-- 1. Basic module -->
+    <script type="module">
+        import { feature } from './feature.js';
+        feature();
+    </script>
+    
+    <!-- 2. Module with nonce -->
+    <script type="module" nonce="random123">
+        import { secureFeature } from './secure.js';
+        secureFeature();
+    </script>
+    
+    <!-- 3. Module with CSP -->
+    <meta http-equiv="Content-Security-Policy" 
+          content="script-src 'self' 'nonce-random123'">
+    
+    <!-- 4. Module with referrerpolicy -->
+    <script type="module" 
+            src="https://cdn.example.com/module.js"
+            referrerpolicy="no-referrer"></script>
+    
+    <!-- 5. Module with custom attributes -->
+    <script type="module" 
+            data-feature="example"
+            data-version="1.0.0">
+        console.log('Custom attributes available via dataset');
+    </script>
+    
+    <!-- 6. Module with error handling -->
+    <script type="module" onerror="handleError(event)">
+        import { missingFeature } from './missing.js';
+    </script>
+</head>
+<body>
+    <h1>Module Attributes Demo</h1>
+    
+    <script>
+        function handleError(event) {
+            console.error('Module error:', event);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ES Modules Example</title>
+</head>
+<body>
+    <h1>ES Modules Example</h1>
+    <p>This example demonstrates native ES Modules in the browser.</p>
+    <p>Key features:</p>
+    <ul>
+        <li>Native browser support (no build tools needed)</li>
+        <li>Static imports (better tooling support)</li>
+        <li>Named exports (better organization)</li>
+        <li>Asynchronous loading</li>
+        <li>Strict mode by default</li>
+    </ul>
+    <p>Check the console for output.</p>
+
+    <!-- Note the type="module" attribute - this is crucial -->
+    <script type="module">
+        // Using import statement in a module script
+        import { addUser, getUserCount } from './user.js';
+
+        // ES Modules are always async in browsers
+        try {
+            await Promise.resolve(); // Just to demonstrate async nature
+            addUser("Alice");    // Works: Added user Alice. Total users: 1
+            addUser("Bo");       // Should throw: Invalid username!
+        } catch (error) {
+            console.log('Error:', error.message);
+        }
+
+        // Demonstrate dynamic import
+        const button = document.createElement('button');
+        button.textContent = 'Load removeUser dynamically';
+        button.onclick = async () => {
+            // Dynamic import - useful for code splitting
+            const { removeUser } = await import('./user.js');
+            removeUser("Alice");
+            console.log(`Users remaining: ${getUserCount()}`);
+        };
+        document.body.appendChild(button);
+    </script>
+</body>
+</html>

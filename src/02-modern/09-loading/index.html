@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Module Loading Patterns</title>
+    
+    <!-- Preload critical modules -->
+    <link rel="modulepreload" href="./core/app.js">
+    <link rel="modulepreload" href="./core/router.js">
+    <link rel="modulepreload" href="./core/store.js">
+    
+    <!-- Preload route modules -->
+    <link rel="modulepreload" href="./routes/home.js">
+    <link rel="modulepreload" href="./routes/about.js">
+    
+    <!-- Prefetch non-critical modules -->
+    <link rel="prefetch" href="./features/comments.js">
+    <link rel="prefetch" href="./features/search.js">
+    
+    <script type="module">
+        // Initialize module loader
+        import { initLoader } from './loader.js';
+        initLoader();
+    </script>
+</head>
+<body>
+    <nav>
+        <a href="#" data-route="home">Home</a>
+        <a href="#about" data-route="about">About</a>
+        <a href="#profile" data-route="profile">Profile</a>
+    </nav>
+    
+    <main id="app"></main>
+    
+    <button id="load-comments">Load Comments</button>
+    <button id="load-search">Load Search</button>
+    
+    <div id="loading" style="display: none">Loading...</div>
+</body>
+</html>

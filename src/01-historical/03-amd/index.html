@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AMD Module Example</title>
+    <!-- Load RequireJS first -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    <script>
+        // Configure RequireJS
+        requirejs.config({
+            baseUrl: '.',
+            paths: {
+                'validator': 'validator',
+                'user': 'user'
+            }
+        });
+
+        // Start the application
+        requirejs(['user'], function(UserModule) {
+            try {
+                UserModule.addUser("Alice");    // Works: Added user Alice. Total users: 1
+                UserModule.addUser("Bo");       // Should throw: Invalid username!
+            } catch (error) {
+                console.log('Error:', error.message);
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>AMD Module Example</h1>
+    <p>Open the browser console to see the results.</p>
+    <p>Key features of AMD:</p>
+    <ul>
+        <li>Asynchronous module loading</li>
+        <li>Browser-first design</li>
+        <li>Explicit dependency declaration</li>
+        <li>No global scope pollution</li>
+    </ul>
+</body>
+</html>
