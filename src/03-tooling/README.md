@@ -17,7 +17,8 @@ This section covers modern JavaScript module bundlers and build tools.
        splitChunks: {
          chunks: 'all'
        }
-     }
+     },
+    
    };
    ```
 
