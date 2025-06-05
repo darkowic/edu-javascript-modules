@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile Manager - Module Bundling Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+    .left-panel {
+      flex: 1;
+    }
+    .right-panel {
+      flex: 1;
+    }
+    .panel {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #0066cc;
+      padding-bottom: 5px;
+    }
+    h3 {
+      color: #0066cc;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0052a3;
+    }
+    .profile-card {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 10px;
+      background-color: white;
+    }
+    .profile-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .profile-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    .edit-btn {
+      background-color: #4CAF50;
+    }
+    .delete-btn {
+      background-color: #f44336;
+    }
+    .example {
+      background-color: white;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      border-left: 4px solid #0066cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>User Profile Manager</h1>
+  <p>This example demonstrates how modern bundlers can bundle different module formats into a cohesive single-purpose application.</p>
+  
+  <div class="panel" id="module-info">
+    <!-- Module information will be populated by JavaScript -->
+  </div>
+  
+  <div class="container">
+    <div class="left-panel">
+      <div class="panel">
+        <h2>Create/Edit Profile</h2>
+        <form id="profile-form">
+          <input type="hidden" id="profile-id" value="">
+          
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required placeholder="Enter full name">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required placeholder="Enter email address">
+          </div>
+          
+          <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" required min="0" max="120" placeholder="Enter age">
+          </div>
+          
+          <button type="submit" id="submit-btn">Create Profile</button>
+        </form>
+      </div>
+      
+      <div class="panel" id="module-examples">
+        <!-- Module examples will be populated by JavaScript -->
+      </div>
+    </div>
+    
+    <div class="right-panel">
+      <div class="panel">
+        <h2>User Profiles</h2>
+        <div id="profiles-list">
+          <!-- Profiles will be populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel">
+    <h2>How This Works</h2>
+    <p>This application demonstrates how different module types can be imported and used together:</p>
+    <ul>
+      <li><strong>ES Module (Core):</strong> The ProfileManager class that orchestrates the application</li>
+      <li><strong>CommonJS Module (Validation):</strong> Provides validation functions for user data</li>
+      <li><strong>UMD Module (Formatting):</strong> Provides text formatting utilities</li>
+      <li><strong>AMD Module (Utilities):</strong> Provides helper functions like ID generation</li>
+    </ul>
+    <p>Each module imports and uses functionality from other modules, showing how modern bundlers enable seamless integration.</p>
+  </div>
+
+  <script type="module" src="/src/index.js"></script>
+</body>
+</html>

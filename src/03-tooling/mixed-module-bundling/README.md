@@ -1,6 +1,6 @@
-# User Profile Manager - Webpack Module Bundling Example
+# User Profile Manager - Module Bundling Example
 
-This example demonstrates how webpack can bundle different module formats (AMD, UMD, CommonJS, ES Modules) into a single cohesive application. Unlike showing independent modules, this example creates a functional User Profile Manager where each module type contributes to the overall functionality.
+This example demonstrates how modern bundlers (Webpack and Vite) can bundle different module formats (AMD, UMD, CommonJS, ES Modules) into a single cohesive application. Unlike showing independent modules, this example creates a functional User Profile Manager where each module type contributes to the overall functionality.
 
 ## Module Types and Their Roles
 
@@ -30,18 +30,21 @@ The example also integrates external libraries:
 ## Project Structure
 
 ```
-webpack-module-bundling/
+module-bundling-example/
 ├── package.json           # Project dependencies and scripts
 ├── webpack.config.js      # Webpack configuration
+├── vite.config.js         # Vite configuration
+├── index.html             # HTML template for Vite
 ├── src/
-│   ├── index.html         # HTML template
+│   ├── index.html         # HTML template for Webpack
 │   ├── index.js           # Main entry point
 │   └── modules/
 │       ├── core/          # ES Module (ProfileManager)
 │       ├── validation/    # CommonJS Module (userValidator)
 │       ├── formatting/    # UMD Module (textFormatter)
 │       └── utils/         # AMD Module (helpers)
-└── dist/                  # Output directory (generated after build)
+├── dist/                  # Webpack output directory (generated after build)
+└── dist-vite/             # Vite output directory (generated after build)
 ```
 
 ## How to Run
@@ -51,23 +54,42 @@ webpack-module-bundling/
    npm install
    ```
 
-2. Start the development server:
+### Using Webpack
+
+1. Start the development server:
    ```
    npm start
    ```
 
-3. Build for production:
+2. Build for production (output to `dist` folder):
    ```
    npm run build
    ```
 
+### Using Vite
+
+1. Start the development server:
+   ```
+   npm run dev:vite
+   ```
+
+2. Build for production (output to `dist-vite` folder):
+   ```
+   npm run build:vite
+   ```
+
+3. Preview the production build:
+   ```
+   npm run preview:vite
+   ```
+
 ## How It Works
 
-This example demonstrates a more realistic use case for webpack's module bundling capabilities:
+This example demonstrates a more realistic use case for modern bundlers' capabilities:
 
 1. The ES Module (`ProfileManager.js`) imports functionality from CommonJS, UMD, and AMD modules
 2. Each module provides a specific type of functionality to the application
-3. Webpack resolves all these different module formats and bundles them into a single cohesive application
+3. Both Webpack and Vite resolve all these different module formats and bundle them into a single cohesive application
 
 The application allows you to:
 - Create user profiles
@@ -92,7 +114,8 @@ This example showcases several important concepts:
 
 1. **Module Composition** - How different module types can be composed together to create a cohesive application
 2. **Cross-Module Dependencies** - How modules can import and use functionality from other module types
-3. **Webpack's Resolution System** - How webpack resolves different module formats seamlessly
+3. **Modern Bundlers' Resolution Systems** - How bundlers like Webpack and Vite resolve different module formats seamlessly
 4. **Single Application Purpose** - Instead of isolated examples, all modules work together for a single purpose
+5. **Bundler Flexibility** - The same codebase can be built with different bundlers
 
 This approach better reflects real-world applications where different libraries and modules (potentially using different module systems) need to work together.

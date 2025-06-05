@@ -5,20 +5,19 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].js',
     clean: true,
+    module: true,
+    chunkFormat: 'module'
+  },
+  experiments: {
+    outputModule: true,
   },
   target: 'web',
   resolve: {
     // Add support for various module formats
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    alias: {
-      // Module directories
-      'core': path.resolve(__dirname, 'src/modules/core'),
-      'validation': path.resolve(__dirname, 'src/modules/validation'),
-      'formatting': path.resolve(__dirname, 'src/modules/formatting'),
-      'utils': path.resolve(__dirname, 'src/modules/utils')
-    }
   },
   optimization: {
     minimize: false
