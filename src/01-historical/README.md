@@ -30,6 +30,9 @@ This directory contains examples demonstrating the historical evolution of JavaS
 - Simple require/exports syntax
 - Became the standard for Node.js
 
+[An algorithm](https://nodejs.org/api/modules.html#all-together) how require works.
+[A module wrapper](https://nodejs.org/api/modules.html#the-module-wrapper). Build in [cjs module implementation](https://nodejs.org/api/module.html).
+
 ### 5. UMD - Universal Module Definition (2011)
 - Directory: `05-umd/`
 - Bridge between AMD and CommonJS
