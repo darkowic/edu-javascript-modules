@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        // Default but important in our case
+        "baseUrl": ".",
+        "outDir": "dist",
+        "target": "es5",
+        "module": "es2022",
+        "esModuleInterop": true,
+        // Here just because of some issue inside dual-package, not important
+        "skipLibCheck": true,
+        "paths": {
+            "dual-package": ["./dual-package"],
+        },
+    },
+    "include": ["src/**/*"],
+
+}
