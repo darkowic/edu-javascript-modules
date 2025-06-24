@@ -1,5 +1,5 @@
 {
-  "name": "dual-package-example",
+  "name": "dual-package",
   "version": "1.0.0",
   "type": "module",
   "exports": {
@@ -7,11 +7,6 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
-    },
-    "./utils": {
-      "import": "./dist/utils/index.js",
-      "require": "./dist/utils/index.cjs",
-      "types": "./dist/utils/index.d.ts"
     }
   },
   "main": "./dist/index.cjs",

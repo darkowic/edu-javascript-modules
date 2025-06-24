@@ -1,0 +1,21 @@
+{
+  "name": "esm-consumer",
+  "version": "1.0.0",
+  "description": "Example of consuming dual-package with ESM",
+  "license": "ISC",
+  "type": "module",
+  "main": "src/main.ts",
+  "scripts": {
+    "start": "tsx ./src/main.ts",
+    "start:native": "node ./src/main.ts",
+    "build": "tsup",
+    "run:built": "node dist/main.js"
+  },
+  "dependencies": {
+    "dual-package": "file:../dual-package"
+  },
+  "devDependencies": {
+    "tsup": "^7.2.0",
+    "tsx": "^4.19.4"
+  }
+}

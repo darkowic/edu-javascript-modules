@@ -36,6 +36,7 @@ export class HashGenerator {
     generate(input: string): string {
         const hash = createHash(this.config.algorithm);
         hash.update(input);
+        // @ts-expect-error
         return hash.digest(this.config.encoding);
     }
 }
