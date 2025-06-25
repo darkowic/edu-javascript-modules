@@ -1,17 +1,21 @@
 // CommonJS-style imports using require
-const dualPackage = require("dual-package");
-const { formatDate, HashGenerator } = dualPackage;
+const { formatDate, HashGenerator } = require("dual-package");
+const axios = require("axios");
+
+type RawAxiosRequestHeaders = typeof axios.RawAxiosRequestHeaders;
 
 // Type definition example
 type DataStructure = {
   name: string;
   timestamp: string;
+  headers: RawAxiosRequestHeaders
 };
 
 // Creating data with TypeScript type checking
 const data = {
   name: "CommonJS Consumer Example",
-  timestamp: formatDate(new Date())
+  timestamp: formatDate(new Date()),
+  headers: {},
 } satisfies DataStructure;
 
 // Using named import from require
